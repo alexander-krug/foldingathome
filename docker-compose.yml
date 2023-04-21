@@ -1,0 +1,29 @@
+
+
+---
+version: "2.1"
+services:
+  foldingathome:
+    image: linuxserver/foldingathome:7.6.21
+    container_name: foldingathome
+    environment:
+
+    volumes:
+      - /path/to/data:/config
+    ports:
+      - 7396:7396
+      - 36330:36330 #optional
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - FAH_CLIENT_NAME=alex-fah
+      - FAH_CLIENT_TEAM=###addteamname###
+      - FAH_CLIENT_PASSKEY=###addpasskey###
+      - FAH_CLIENT_POWER=FULL
+      - FAH_CLIENT_ARCH=amd64
+    volumes:
+      - /path/to/config:/etc/fahclient
+      - /path/to/logs:/var/log/fahclient
+    restart: unless-stopped
+    
